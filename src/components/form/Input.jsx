@@ -1,0 +1,83 @@
+import React, { useEffect, useState } from "react";
+import { Icon } from "@iconify/react";
+
+function Input({type, placeholder, value, children, labelClass, inputClass, id, name, onChange, errors, touched, focus, onBlur, multiple, removeImages}) {
+          const [outlineRing, setOutlineRing] = useState('focus:ring-green-500 focus:outline-green-500')
+          const [Type, setType] = useState(type)
+          
+
+          const handlePassShowHide = () => {
+            if(Type === 'password'){
+              setType('text')
+            }
+            else{
+              setType('password')
+            }
+          }
+
+          useEffect(() => {
+             if(touched && errors) {
+            setOutlineRing(' ring-2 outline-2 ring-red-500 outline-red-500 ')
+          }
+          else{
+            setOutlineRing(' focus:ring-2 focus:outline-2 focus:ring-green-500 focus:outline-green-500 ')
+          }
+          }, [value, errors, touched])
+         
+
+
+return(<>
+     {type === 'file' ? (<div className="flex flex-col items-start w-full">
+    { value !== null && !Array.isArray(value) || Array.isArray(value) && value.length !== 0  ? Array.isArray(value) && value.length > 0 ? <div className="flex gap-6 bg-[#cadbd0] flex-wrap">{ value.map((file, index) => <div className="relative"><img key={index} className="w-30 h-30 object-cover self-center" src={URL.createObjectURL(file)}/><button type="button" onClick={() => { removeImages(index) }} className="absolute top-0 right-1 cursor-pointer"><Icon icon="material-symbols:cancel-outline-rounded" width="30px" height="30px"  style={{color: '#910a00'}} /></button></div>) }</div> : <img className="w-60 object-cover self-center" src={URL.createObjectURL(value)}/> :
+    <>
+    <div className="w-full py-9 bg-[#cadbd0] rounded-2xl border border-gray-300 gap-3 grid border-dashed">
+<div className="grid gap-1">
+<Icon className="mx-auto" icon="fa7-regular:file-text" width="40px" height="40px"  style={{color: 'oklch(45.3% 0.124 130.933)'}} />
+<h2 className="text-center text-gray-400   text-xs leading-4">PNG, JPG or PNG, smaller than 15MB</h2>
+</div>
+<div className="grid gap-2">
+<h4 className="text-center text-gray-900 text-sm font-medium leading-snug">Drag and Drop your file here or</h4>
+<div className="flex items-center justify-center">
+<label>
+  <input type="file" multiple={multiple} hidden name={name} onChange={onChange} accept="image/jpg, image/jpeg, image/png" />
+  <div className="flex py-3 px-5 flex-col bg-green-800 rounded-[9px] shadow-sm text-white text-xs border border-secondary font-semibold leading-4 items-center justify-center cursor-pointer transition-all duration-700 hover:bg-white hover:text-green-800 hover:transition-all hover:duration-700 focus:outline-none">{children}</div>
+</label>
+</div>
+</div>
+</div>
+    </>
+    }
+    {touched && errors ? (
+              <div>{errors}</div>
+            ) : null}
+   </div>)
+    : <>
+    <div className="flex flex-col items-start w-full relative">
+    <input 
+    id={id}
+    type={Type} 
+    placeholder={placeholder} 
+    value={value} 
+    onChange={onChange} 
+    name={name}
+    onBlur={onBlur}
+    className={"block autofill:bg-transparent px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border border-gray-50 border-default-medium appearance-none focus:outline-none focus:border-white peer h-14 rounded-[9px] pl-3 font-medium text-white" + outlineRing}
+    />
+    {type === 'date' && <Icon className="absolute top-4 right-5" icon="uil:calender" width="30px" height="30px"  style={{color: 'oklch(45.3% 0.124 130.933)'}} />}
+    {type === 'password' && <button type="button" onClick={handlePassShowHide}>{Type === 'password' ? <Icon className="absolute top-5 right-6" icon="mdi:show" width="20px" height="20px"  style={{color: 'oklch(45.3% 0.124 130.933)'}} /> : <Icon className="absolute top-5 right-6" icon="mdi:hide" width="20px" height="20px"  style={{color: 'oklch(45.3% 0.124 130.933)'}} />}</button>}
+    <label className="inline-flex items-center select-none cursor-text absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#D9E4DD] px-2 peer-focus:px-2 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white font-semibold ml-2 " htmlFor={id}>{children}</label>
+    </div>
+
+    {touched && errors ? (
+              <span className="text-red-500 text-[12px] self-start ml-3 -mt-5">* {errors}</span>
+            ) : null}
+    </>
+}
+</>
+)
+};
+
+export default Input;
+
+
+//<p className="text-blue-label font-black text-xl">{children}</p>

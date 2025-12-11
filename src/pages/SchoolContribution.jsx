@@ -3,7 +3,7 @@ import SchoolDetail from "../components/SchoolsDetails";
 import { Link } from "react-router-dom";
 export default function RRRPage() {
   return (
-<div className="w-full min-h-full bg-green-100 flex flex-col">
+<div className="w-full min-h-full bg-[#D9E4DD] flex flex-col">
 
   <div className="">
 
@@ -15,7 +15,6 @@ export default function RRRPage() {
         पुनः उपयोग • पुनर्चक्रण • संसाधन संरक्षण
       </p>
     </div>
-
 
     <div className="max-w-6xl mx-auto px-4">
       <RRRCenter />

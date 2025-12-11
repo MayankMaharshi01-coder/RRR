@@ -22,8 +22,8 @@ const Footer = () => {
             {" "}
             Join with Us Quikly
           </h2>
-          <a href="/home">
-            <button className="bg-linear-to-r to-green-400 from-green-700 text-white text-3xl px-6 py-3 rounded-full hover:bg-orange-700 transition">
+          <a href="/schoolRegister">
+            <button className="bg-linear-to-r cursor-pointer to-green-400 from-green-800 hover:from-green-400 hover:duration-1000 hover:to-green-800 hover:bg-linear-to-r text-white text-3xl px-16 py-3 rounded-full hover:bg-orange-700 transition">
               Get Started
             </button>
           </a>

@@ -10,7 +10,6 @@ export default function Item({
   handleClick,
  
 }) {
-
   
   return (
     <div>
@@ -22,6 +21,9 @@ export default function Item({
         <div className="p-4">
           <p className=" sm:text-2xl text-black font-bold text-xl mt-2 tracking-wide  transition duration-200">
           {category}
+        </p>
+        <p className=" sm:text-xl text-black font-bold text-xl mt-2 tracking-wide  transition duration-200">
+          {name}
         </p>
         <h3 className=" sm:text-xl font-semibold text-gray-600 text-base mt-1 tracking-tight">
           {schoolName}

@@ -1,63 +1,35 @@
 import React, { useState } from "react";
-import Item from "./Item.jsx"
+import Item from "./Item.jsx";
+import DropDown from "./form/DropDown.jsx";
+import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
+import { useRef } from "react";
 
-function SelectSchool({schoolDataList}) {
+function SelectSchool({ schoolDataList }) {
+   const productList = schoolDataList;
+  console.log("Product List:", productList);
 
-  const productList = schoolDataList;
-  // [
-  //   {
-  //     district: "Churu",
-  //     schools: ["Govt. Sr. Sec. School, Churu", "Bal Mandir Sr. Sec. School, Churu"]
-  //   },
-  //   {
-  //     district: "Ratangarh",
-  //     schools: ["Govt. Sr. Sec. School, Ratangarh", "Bal Mandir Sr. Sec. School, Ratangarh"]
-  //   },
-  //   {
-  //     district: "Sujangarh",
-  //     schools: ["Govt. Sr. Sec. School, Sujangarh", "Bal Mandir Sr. Sec. School, Sujangarh"]
-  //   },
-  //   {
-  //     district: "Taranagar",
-  //     schools: ["Govt. Sr. Sec. School, Taranagar", "Bal Mandir Sr. Sec. School, Taranagar"]
-  //   },
-  //   {
-  //     district: "Bidasar",
-  //     schools: ["Govt. Sr. Sec. School, Bidasar", "Adarsh Vidya Mandir, Bidasar"]
-  //   },
-  //   {
-  //     district: "Sardarshahar",
-  //     schools: ["Govt. Sr. Sec. School, Sardarshahar", "Seth Moti Lal School, Sardarshahar"]
-  //   },
-  //   {
-  //     district: "Rajgarh",
-  //     schools: ["Govt. Sr. Sec. School, Rajgarh", "Tagore Public School, Rajgarh"]
-  //   }
-
-  // ];
-  let selectedSchoolAndDistrict = {}
-  let selectedSchoolProducts = [{category
-: 
-"Book",
-description
-: 
-" It is a awesome product.",
-id
-: 
-6,
-imgUrl
-: 
-"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6v5SbBcLqbOIaX0N7jAwoU9e1RsmtSD7Atg&s",
-schoolName
-: 
-"Bal Mandir Sr. Sec. School, Sujangarh"}];
+  let selectedSchoolAndDistrict = {};
+  let selectedSchoolProducts = useRef([]);
   const [selectedDistrict, setSelectedDistrict] = useState("default");
   const [selectedSchool, setSelectedSchool] = useState("default");
 
+  function selectedSchoolProductsfun(event) {
+    selectedSchoolProducts.current = [];
+    productList.forEach((item) => {
+      if (
+        item.schoolName === event.target.value &&
+        item.schoolName.split(", ")[1] === selectedDistrict
+      ) {
+        selectedSchoolProducts.current.push(item);
+      }
+    });
+  }
   function handleDistrictChange(event) {
+   
     setSelectedDistrict(event.target.value);
-    setSelectedSchool("default");    console.log("Selected District:", event.target.value);
-
+    setSelectedSchool("default");
+    console.log("Selected District:", event.target.value);
   }
 
   function handleSchoolChange(event) {
@@ -65,94 +37,150 @@ schoolName
     selectedSchoolAndDistrict.district = selectedDistrict;
     console.log("Selected School and District:", selectedSchoolAndDistrict);
     setSelectedSchool(event.target.value);
-    selectedSchoolProducts = productList.filter((item) => {
-      return item.schoolName === event.target.value && item.schoolName.split(', ')[1] === selectedDistrict;
-    });
-    selectedSchoolAndDistrict = {
-      school: event.target.value,
-      district: selectedDistrict,
-      products: selectedSchoolProducts
-    };
-    console.log("Selected School Products:", selectedSchoolProducts);
-  //   productList.filter((item )=> {
-  //    if( item.schoolName === event.target.value){}
-  // }
 
+    selectedSchoolProductsfun(event);
+
+    console.log("Selected School Products:", selectedSchoolProducts.current);
   }
 
-  const districts =[];
+  const districts = [];
 
-  productList.forEach(item => {
-    const district = item.schoolName.split(', ')[1];
+  productList.forEach((item) => {
+    const district = item.schoolName.split(", ")[1];
+    console.log(district);
     if (!districts.includes(district)) {
       districts.push(district);
     }
   });
-  const schoolsInSelectedDistrict = selectedDistrict !== "default"
-    ? productList.filter(item => item.schoolName.split(', ')[1] === selectedDistrict).map(item => item.schoolName)
-    : [];
-console.log(schoolsInSelectedDistrict);
+  const schoolsInSelectedDistrict = [];
+  if (selectedDistrict !== "default") {
+    const schoolName = [];
+    productList.forEach((item) => {
+      const district = item.schoolName.split(", ")[1];
+      if (
+        district === selectedDistrict &&
+        !schoolName.includes(item.schoolName)
+      ) {
+        schoolName.push(item.schoolName);
+        schoolsInSelectedDistrict.push(item.schoolName);
+      }
+    });
+  } else {
+    [];
+  }
+  console.log(schoolsInSelectedDistrict);
   return (
     <>
       <div className="bg-green-100 h-screen w-full flex items-center flex-col">
-
-        <div className="mt-20 flex items-center justify-center flex-col">
-          <h2 className="text-green-900 text-4xl font-serif font-bold">Want to see things in your school!</h2>
-          <h1 className="text-green-900 text-7xl font-serif font-bold">Select Your School</h1>
+        <div className="mt-20 flex items-center justify-center flex-col gap-12">
+          <h2 className="text-green-900 text-4xl font-serif font-bold">
+            Want to see things in your school!
+          </h2>
+          <Link
+            to="/uploadProducts"
+            className="text-white bg-green-800 px-5 py-2 border-2 shadow-xl border-green-800 flex gap-2 font-semibold text-lg items-center transition-all duration-700 rounded-[9px] group hover:bg-white hover:text-green-800"
+          >
+            <Icon
+              className="text-white group-hover:text-green-800"
+              icon="proicons:box-add"
+              width="35px"
+              height="35px"
+            />{" "}
+            Add New Product
+          </Link>
+          <span className="text-green-600 text-2xl font-black">OR</span>
+          <Link className="bg-white text-green-800 px-5 py-2 border-2 shadow-xl border-white-800 flex gap-2 font-semibold text-lg items-center transition-all duration-700 rounded-[9px] group hover:text-white hover:bg-green-800">
+            <Icon
+              className="group-hover:text-white text-green-800"
+              icon="mdi:donate-outline"
+              width="35px"
+              height="35px"
+            />{" "}
+            Add Helped Student
+          </Link>
+          <h1 className="text-green-900 text-7xl font-serif font-bold">
+            Select Your School
+          </h1>
         </div>
 
-        <div className="bg-[rgb(201,255,191)] mt-14 p-10 min-w-2xl text-2xl font-serif flex flex-col lg:flex-row justify-between px-20 outline-none items-center shadow-2xl">
-          <select className="rounded-md text-green-950 w-fit border-green-900 border-2" name="districtSelector" id="districtSelector" onChange={handleDistrictChange} value={selectedDistrict}>
-          <option value="default" className="bg-[rgb(201,255,191)]">Select Your Sub-District</option>
-          {districts.map((district, index) => (
-            <option className="rounded-md  bg-[rgb(201,255,191)]" key={index} value={district}>{district}</option>
-          ))}
-        </select>
+        <div className="bg-[#D9E4DD] rounded-[9px] mt-14 p-10 min-w-2xl text-2xl font-serif flex flex-col lg:flex-row justify-between px-20 outline-none items-center shadow-2xl gap-8">
+          <DropDown
+            className="rounded-md text-green-950 w-fit border-green-900 border-2"
+            label="Sub-District"
+            name="districtSelector"
+            id="districtSelector"
+            onChange={handleDistrictChange}
+            value={selectedDistrict}
+          >
+            <option value="default" className="bg-green-900">
+              Select Your Sub-District
+            </option>
+            {districts.map((district, index) => (
+              <option
+                className="rounded-md  bg-green-900"
+                key={index}
+                value={district}
+              >
+                {district}
+              </option>
+            ))}
+          </DropDown>
 
-        <select className="rounded-md text-green-950 w-fit border-green-900 border-2" name="schoolSelector" id="schoolSelector" onChange={handleSchoolChange} value={selectedSchool} disabled={selectedDistrict === "default"}>
-          <option value="default" className="bg-[rgb(201,255,191)]">Select Your School</option>
-          {schoolsInSelectedDistrict.map((school, index) => (
-            <option className="rounded-md  bg-[rgb(201,255,191)]" key={index} value={school}>{school}</option>
-          ))}
-        </select>
+          <DropDown
+            className="rounded-md text-green-950 w-fit border-green-900 border-2"
+            label="School"
+            name="schoolSelector"
+            id="schoolSelector"
+            onChange={handleSchoolChange}
+            value={selectedSchool}
+            disabled={selectedDistrict === "default"}
+          >
+            <option value="default" className="bg-green-900">
+              Select Your School
+            </option>
+            {schoolsInSelectedDistrict.map((school, index) => (
+              <option
+                className="rounded-md  bg-green-900"
+                key={index}
+                value={school}
+              >
+                {school}
+              </option>
+            ))}
+          </DropDown>
         </div>
       </div>
-      <div >
-{
-  selectedSchoolAndDistrict ? (
-    <>
-   <h2 className="text-center text-6xl font-bold text-green-800 mb-8 font-serif">
-            Available Products
-          </h2>
-          <div className="flex flex-wrap gap-5 justify-center px-4">
-            {selectedSchoolProducts.map(function ({
-              category,
-              imgUrl,
-              description,
-              schoolName,
-              id,
-            }) {
-              return (
-                <Item
-                  category={category}
-                  imgUrl={imgUrl}
-                  description={description}
-                  schoolName={schoolName}
-                  key={id}
-                  id={id}
-                
-                 
-               
-                />
-              );
-            })}
-          </div>
+      <div>
+        {selectedSchoolAndDistrict ? (
+          <>
+            <h2 className="text-center text-6xl font-bold text-green-800 mb-8 font-serif">
+              Available Products
+            </h2>
+            <div className="flex flex-wrap gap-5 justify-center px-4">
+              {selectedSchoolProducts.current.map(function ({
+                category,
+                imgUrl,
+                description,
+                schoolName,
+                id,
+              }) {
+                return (
+                  <Item
+                    category={category}
+                    imgUrl={imgUrl}
+                    description={description}
+                    schoolName={schoolName}
+                    key={id}
+                    id={id}
+                  />
+                );
+              })}
+            </div>
           </>
-  ) : null
-}
-</div>
+        ) : null}
+      </div>
     </>
   );
-};
+}
 
 export default SelectSchool;
