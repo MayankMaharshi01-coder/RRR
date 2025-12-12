@@ -111,7 +111,8 @@ exports.getSchoolLeaderBoard = async (req, res, next) => {
     { $unwind: "$school" },
     {
       $project: {
-      "school.password": 0
+      "school.password": 0,
+      "school.__v": 0
       }
     }
   ])

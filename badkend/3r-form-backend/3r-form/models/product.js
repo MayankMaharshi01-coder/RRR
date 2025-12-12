@@ -37,6 +37,10 @@ const productSchema = new mongoose.Schema({
     required: true,
     enum: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '12th pass', "Don't Study in School"]
   },
+  availability: {
+   type: String,
+   default: '1'
+  },
   description: {
     type: String,
     required: true,
