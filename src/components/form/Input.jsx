@@ -61,7 +61,7 @@ return(<>
     onChange={onChange} 
     name={name}
     onBlur={onBlur}
-    className={"block autofill:bg-transparent px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border border-gray-50 border-default-medium appearance-none focus:outline-none focus:border-white peer h-14 rounded-[9px] pl-3 font-medium text-white" + outlineRing}
+    className={"block autoFill px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border border-gray-50 border-default-medium appearance-none focus:outline-none focus:border-white peer h-14 rounded-[9px] pl-3 font-medium text-white" + outlineRing}
     />
     {type === 'date' && <Icon className="absolute top-4 right-5" icon="uil:calender" width="30px" height="30px"  style={{color: 'oklch(45.3% 0.124 130.933)'}} />}
     {type === 'password' && <button type="button" onClick={handlePassShowHide}>{Type === 'password' ? <Icon className="absolute top-5 right-6" icon="mdi:show" width="20px" height="20px"  style={{color: 'oklch(45.3% 0.124 130.933)'}} /> : <Icon className="absolute top-5 right-6" icon="mdi:hide" width="20px" height="20px"  style={{color: 'oklch(45.3% 0.124 130.933)'}} />}</button>}

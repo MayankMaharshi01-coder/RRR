@@ -8,7 +8,7 @@ exports.postProduct = [(req, res, next) => {
   next();
 },(req, res, next) => {
 
-    const { title, incharge, category, condition, description } = req.body;
+    const { title, donorName, donorClass, incharge, category, condition, description } = req.body;
         //console.log('Received POST /products request with body:', req.body, req.file);
     console.log('req body', req.body)
       if(!req.files || !req.files.thumbnail) {
@@ -16,7 +16,7 @@ exports.postProduct = [(req, res, next) => {
     }
     const thumbnail = req.files.thumbnail[0].path;
     const images = req.files.images ? req.files.images.map(file => file.path) : [];
-    const product = new Product({ school, title, incharge, category, thumbnail, images, condition, description });
+    const product = new Product({ school, donorName, donorClass, title, incharge, category, thumbnail, images, condition, description });
     product.save()
       .then(() => {
         res.status(201).json({ message: 'Product created successfully' });

@@ -98,8 +98,8 @@ export function getSchoolById(id) {
 }
 
 
-export function getSchoolByDistrict(district) {
-    return axios.get(`http://localhost:3000/school/detail/${district}`).then((res) => {
+export function getSchoolBySubDistrict(subDistrict) {
+    return axios.get(`http://localhost:3000/school/subDistrict/school/?subDistrict=${subDistrict}`).then((res) => {
         return res.data;
     }).catch((err) => {
         console.log('error while getting by district school', err)

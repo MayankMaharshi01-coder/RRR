@@ -28,6 +28,15 @@ const productSchema = new mongoose.Schema({
     required: true,
     enum: ['good', 'avarage', 'nice']
   },
+  donorName: {
+    type: String,
+    required: true,
+  },
+  donorClass: {
+   type: String,
+    required: true,
+    enum: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '12th pass', "Don't Study in School"]
+  },
   description: {
     type: String,
     required: true,

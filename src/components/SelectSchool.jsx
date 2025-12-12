@@ -1,21 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Item from "./Item.jsx";
 import DropDown from "./form/DropDown.jsx";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useRef } from "react";
+import { getSchoolBySubDistrict } from "./form/api.js";
 
 function SelectSchool({ schoolDataList }) {
-   const productList = schoolDataList;
+
+   const [selectedSubDistrict, setSelectedSubDistrict] = useState("default");
+   const [selectedSchool, setSelectedSchool] = useState("default");
+   const [schoolList, setSchoolList] = useState([]);
+   const subDistrict = [
+    'Sardarshahar',
+    'Rajgarh',
+    'Ratangarh',
+    'Sujangarh',
+    'Taranagar',
+    'Bidasar',
+    'Churu'
+   ]
+   /*const productList = schoolDataList;
   console.log("Product List:", productList);
 
   let selectedSchoolAndDistrict = {};
   let selectedSchoolProducts = useRef([]);
   const [selectedDistrict, setSelectedDistrict] = useState("default");
-  const [selectedSchool, setSelectedSchool] = useState("default");
+  const [selectedSchool, setSelectedSchool] = useState("default");*/
 
   function selectedSchoolProductsfun(event) {
-    selectedSchoolProducts.current = [];
+
+    /*selectedSchoolProducts.current = [];
     productList.forEach((item) => {
       if (
         item.schoolName === event.target.value &&
@@ -23,27 +38,31 @@ function SelectSchool({ schoolDataList }) {
       ) {
         selectedSchoolProducts.current.push(item);
       }
-    });
+    });*/
   }
   function handleDistrictChange(event) {
-   
+     setSelectedSubDistrict(event.target.value);
+     setSelectedSchool("default");
+   /*
     setSelectedDistrict(event.target.value);
     setSelectedSchool("default");
     console.log("Selected District:", event.target.value);
+    */
   }
 
   function handleSchoolChange(event) {
-    selectedSchoolAndDistrict.school = event.target.value;
+    setSelectedSchool(event.target.value);
+    /*selectedSchoolAndDistrict.school = event.target.value;
     selectedSchoolAndDistrict.district = selectedDistrict;
     console.log("Selected School and District:", selectedSchoolAndDistrict);
     setSelectedSchool(event.target.value);
 
     selectedSchoolProductsfun(event);
 
-    console.log("Selected School Products:", selectedSchoolProducts.current);
+    console.log("Selected School Products:", selectedSchoolProducts.current);*/
   }
 
-  const districts = [];
+  /*const districts = [];
 
   productList.forEach((item) => {
     const district = item.schoolName.split(", ")[1];
@@ -51,8 +70,8 @@ function SelectSchool({ schoolDataList }) {
     if (!districts.includes(district)) {
       districts.push(district);
     }
-  });
-  const schoolsInSelectedDistrict = [];
+  });*/
+  /*const schoolsInSelectedDistrict = [];
   if (selectedDistrict !== "default") {
     const schoolName = [];
     productList.forEach((item) => {
@@ -68,7 +87,16 @@ function SelectSchool({ schoolDataList }) {
   } else {
     [];
   }
-  console.log(schoolsInSelectedDistrict);
+  console.log(schoolsInSelectedDistrict);*/
+
+  useEffect(() => {
+     if(selectedSubDistrict !== 'default') {
+       getSchoolBySubDistrict(selectedSubDistrict).then((res) => {
+        console.log(res);
+        setSchoolList(res);
+       })
+     }
+  }, [selectedSubDistrict])
   return (
     <>
       <div className="bg-green-100 h-screen w-full flex items-center flex-col">
@@ -110,20 +138,18 @@ function SelectSchool({ schoolDataList }) {
             name="districtSelector"
             id="districtSelector"
             onChange={handleDistrictChange}
-            value={selectedDistrict}
+            value={selectedSubDistrict}
           >
             <option value="default" className="bg-green-900">
               Select Your Sub-District
             </option>
-            {districts.map((district, index) => (
-              <option
+           {subDistrict.map((item, index) =>  <option
                 className="rounded-md  bg-green-900"
                 key={index}
-                value={district}
+                value={item.toLowerCase()}
               >
-                {district}
-              </option>
-            ))}
+                {item}
+              </option>)}
           </DropDown>
 
           <DropDown
@@ -133,31 +159,29 @@ function SelectSchool({ schoolDataList }) {
             id="schoolSelector"
             onChange={handleSchoolChange}
             value={selectedSchool}
-            disabled={selectedDistrict === "default"}
+            disabled={selectedSubDistrict === "default"}
           >
             <option value="default" className="bg-green-900">
               Select Your School
             </option>
-            {schoolsInSelectedDistrict.map((school, index) => (
-              <option
+          {schoolList.map((school, index) =>  <option
                 className="rounded-md  bg-green-900"
                 key={index}
-                value={school}
+                value={school._id}
               >
-                {school}
-              </option>
-            ))}
+                {school.schoolName}
+              </option>)}
           </DropDown>
         </div>
       </div>
       <div>
-        {selectedSchoolAndDistrict ? (
+        {'any' ? (
           <>
             <h2 className="text-center text-6xl font-bold text-green-800 mb-8 font-serif">
               Available Products
             </h2>
             <div className="flex flex-wrap gap-5 justify-center px-4">
-              {selectedSchoolProducts.current.map(function ({
+              {[].map(function ({
                 category,
                 imgUrl,
                 description,

@@ -3,3 +3,8 @@
 .no-scroll{
   overflow: hidden;
 }
+
+ .autoFill:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+        background-color: transparent !important;
+    }
