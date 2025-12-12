@@ -14,6 +14,7 @@ import SchoolLoginForm from "./components/form/SchoolLoginForm";
 import SchoolRegisterForm from "./components/form/SchoolRegisterForm";
 import { AlertPopup } from "./components/form/MiniComp";
 import SchoolPage from './components/SchoolPage';
+import Welcome from './pages/Welcome';
 
 function App() {
 
@@ -40,7 +41,8 @@ function App() {
         <main className="relative">
        {alert && <AlertPopup className="" message={alert.message} type={alert.type} />}
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Welcome />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/developer" element={<Developers />} />
             <Route path="/inspiration" element={<Inspiration />} />
             <Route path="/initiatives" element={<Initiatives />} />

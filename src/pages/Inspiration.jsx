@@ -1,10 +1,10 @@
 import React from 'react';
 import InspirationCard from '../components/InspirationCard';
 import Text from '../components/Text';
-const photo1 = "/images/pictac1"
-const photo2 = "/images/pictac2"
-const photo3 = "/images/pictac3"
-const photo4 = "/images/pictac4"
+const photo1 = "/images/pictac1.jpg"
+const photo2 = "/images/pictac2.jpg"
+const photo3 = "/images/pictac3.jpg"
+const photo4 = "/images/pictac4.png"
 
 const Inspiration = () => {
   return (

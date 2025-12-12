@@ -1,6 +1,6 @@
 import React from 'react'
 import DeveloperCards from '../components/DeveloperCard';
-const photo1 = '/images/pic1.png';
+const photo1 = '/images/pic1.jpg';
 const photo2 = '/images/pic2.jpg';
 const photo3 = '/images/pic3.jpg';
 const photo4 = '/images/pic4.jpg';

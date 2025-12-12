@@ -1,10 +1,13 @@
+import React from "react";
+const Image1 = "/images/InspiringCeter.png"
+
 export default function RRRCenter () {
     return (
         <>
         <div className="max-w-5xl mx-auto transform transition-all duration-500  bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row hover:scale-103 hover:shadow-2xl" >
       
       <div className="md:w-1/2">
-        <img     src="https://static.vecteezy.com/system/resources/thumbnails/070/677/212/small/classroom-environment-clean-green-chalkboard-wooden-desk-and-chair-for-education-and-learning-photo.jpeg" alt="3-R Center" className="w-full h-full object-cover" />
+        <img src={Image1} alt="3-R Center" className="w-full h-full object-cover" />
       </div>
       
         <div className="md:w-1/2 p-8 flex flex-col justify-center bg-green-50 border border-green-200 hover:shadow-2xl transition-all duration-300">
