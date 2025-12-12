@@ -9,5 +9,5 @@ schoolRoute.get('/current', schoolController.getCurrentSchool);
 schoolRoute.get('/allSchool', schoolController.getAllSchool);
 schoolRoute.get('/detail/:schoolId', schoolController.getSchoolById);
 schoolRoute.get('/subDistrict/school', schoolController.getSchoolBySubDistrict);
-schoolRoute.get('schoolLeaderBoard', schoolController.getSchoolLeaderBoard)
+schoolRoute.get('/schoolLeaderBoard', schoolController.getSchoolLeaderBoard)
 module.exports = schoolRoute;

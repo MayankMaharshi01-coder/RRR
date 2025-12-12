@@ -130,3 +130,17 @@ export function getSchoolBySubDistrict(subDistrict) {
       console.log('error while getting by district school', err);
     });
 }
+
+
+export function getSchoolLeaderBoard() {
+   return axios
+    .get(
+      `http://localhost:3000/school/schoolLeaderBoard`
+    )
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.log('error while getting by district school', err);
+    });
+}
