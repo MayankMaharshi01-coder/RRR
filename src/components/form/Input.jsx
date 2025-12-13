@@ -70,12 +70,8 @@ return(<>
     />
     {type === 'date' && <Icon className="absolute top-4 right-5" icon="uil:calender" width="30px" height="30px"  style={{color: 'oklch(45.3% 0.124 130.933)'}} />}
     {type === 'password' && <button type="button" onClick={handlePassShowHide}>{Type === 'password' ? <Icon className="absolute top-5 right-6" icon="mdi:show" width="20px" height="20px"  style={{color: 'oklch(45.3% 0.124 130.933)'}} /> : <Icon className="absolute top-5 right-6" icon="mdi:hide" width="20px" height="20px"  style={{color: 'oklch(45.3% 0.124 130.933)'}} />}</button>}
-<<<<<<< HEAD
-    <label className="inline-flex items-center select-none cursor-text absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-[#D9E4DD] px-2 peer-focus:px-2 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white font-semibold ml-2 " htmlFor={id}>{children}</label>
-=======
     {editing && readOnly && <button type="button" onClick={handleEdit}> <Icon className="absolute top-5 right-6" icon="iconamoon:edit" width="20px" height="20px"  style={{color: 'oklch(45.3% 0.124 130.933)'}} /></button>}
-    <label className="inline-flex items-center select-none cursor-text absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#D9E4DD] px-2 peer-focus:px-2 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white font-semibold ml-2 " htmlFor={id}>{children}</label>
->>>>>>> 7b3b8fc (edit page added and search api added and edit api is added)
+    <label className="inline-flex items-center select-none cursor-text absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-[#D9E4DD] px-2 peer-focus:px-2 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white font-semibold ml-2 " htmlFor={id}>{children}</label>
     </div>
 
     {touched && errors ? (

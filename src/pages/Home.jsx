@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Item from "../components/Item";
 import HomeVideo from "../components/HomeVideo";
 import DetailCard from "../components/DetailCard";
@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { RiArrowDropUpLine } from "react-icons/ri";
 import { AllProductsData } from "../context/AllProducts";
+import { getProducts } from "../components/form/api";
 
 
 // const dummyData = [
@@ -212,6 +213,15 @@ function Home() {
     setData(newdata);}
   };
 
+
+  const [productData, setProductData] = useState([]);
+      useEffect(() => {
+        getProducts(schoolName).then((data)=> {
+          setProductData(data);
+          console.log(data);
+        });
+      }, []);
+
     return (
       <>
         <Slidebar />
@@ -386,7 +396,43 @@ function Home() {
           </div>
 
           <div className="flex flex-wrap gap-5 justify-center px-4">
-            {data.map(function ({
+           
+           {productData.map((product, index) => {
+              return <div className="flex bg-white p-3 gap-7 max-w-full flex-wrap items-center flex-col">
+                <img src={product.thumbnail} alt={product.title} className="w-32 h-32 object-cover" />
+                <h1>{product.title}</h1>
+                <h1>{product.description}</h1>
+              </div>
+           })}
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           {/*  {data.map(function ({
               category,
               name,
               imgUrl,
@@ -407,7 +453,7 @@ function Home() {
                   handleClick={handleClick}
                 />
               );
-            })}
+            })} */}
           </div>
         </div>
       </div>

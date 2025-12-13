@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import SelectSchool from "../components/SelectSchool";
 import Slidebar from "../components/Slidebar";
 import { AllProductsData } from "../context/AllProducts";
+import SchoolLoginForm from "../components/form/SchoolLoginForm";
 
 const YourSchool = () => {
 
@@ -112,8 +113,9 @@ const schoolDataList = useContext(AllProductsData);
 
   return(
     <>
-        <Slidebar />
-    <SelectSchool schoolDataList={schoolDataList} />
+      <div className="h-screen w-full">
+        <SchoolLoginForm />
+      </div>
     </>
   )
 };

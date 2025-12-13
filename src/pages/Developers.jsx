@@ -6,6 +6,7 @@ const photo2 = '/images/pic2.jpg';
 const photo3 = '/images/pic3.jpg';
 const photo4 = '/images/pic4.jpg';
 const photo5 = '/images/pic5.jpg';
+const photo6 = "/images/pic6.jpg";
 
 const Developer = () => {
   return (
@@ -30,7 +31,7 @@ const Developer = () => {
     </div>
     <div className='flex flex-col xl:flex-row justify-around pb-20 p-10'>
         <DeveloperCards name='Neha Goyal' post='Web Developer'image={photo5}/>
-        <DeveloperCards name='Tansukh'  post='Web Developer'  image={photo5}/>
+        <DeveloperCards name='Tansukh'  post='Web Developer'  image={photo6}/>
     </div>
     
     </div>
