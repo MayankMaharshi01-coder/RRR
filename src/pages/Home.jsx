@@ -407,7 +407,7 @@ function Home() {
               </div>
            })} */}
 
-            {productData.map(function ({
+            {dummyData.map(function ({
               category,
               name,
               thumbnail,
@@ -424,7 +424,7 @@ function Home() {
                   schoolName={schoolName}
                   key={_id}
                   id={_id}
-                  goodsData={productData}
+                  goodsData={dummyData}
                   handleClick={handleClick}
                 />
               );
