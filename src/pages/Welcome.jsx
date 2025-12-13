@@ -1,7 +1,61 @@
 import React, { useContext, useRef, useState } from "react";
 import { AllProductsData } from "../context/AllProducts";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
+import gsap from "gsap"; 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Autoplay, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/navigation'; 
+import Hero from '../components/Hero';
+import Cards from '../components/Cards';
+import Slides from '../components/Slides';
+import { MdAdd } from "react-icons/md";
+
+const Recycle = "/images/recycle.png";
+const WelcomeBg = "/images/bg.jpg";
+const Reduse = "/images/reduce2.png";
+const Reuse = "/images/reuse.png";
+const TechBg = "/images/techbg.jpg";
+
+const cardData = [
+  { 
+    id: 1, 
+    image: Recycle, 
+    name: 'Reduce', 
+    post: 'Minimize your consumption at the source; the best waste is the one never created.', 
+  },
+  { 
+    id: 1, 
+    image: Recycle, 
+    name: 'Recycle', 
+    post: 'Give every item a second, third, and fourth life to extend its utility.', 
+  },
+  { 
+    id: 2, 
+    image: Reuse, 
+    name: 'Reuse', 
+    post: 'Close the loop by processing materials into new products to save energy and resources.', 
+  },
+   { 
+    id: 2, 
+    image: Reuse, 
+    name: 'Reuse', 
+    post: 'Close the loop by processing materials into new products to save energy and resources.', 
+  },
+   { 
+    id: 3, 
+    image: Reduse, 
+    name: 'Reuse', 
+    post: 'Close the loop by processing materials into new products to save energy and resources.', 
+  },
+   { 
+    id: 3, 
+    image: Reduse, 
+    name: 'Reuse', 
+    post: 'Close the loop by processing materials into new products to save energy and resources.', 
+  },
+];
 
 export default function Welcome() {
   const products = useContext(AllProductsData);
@@ -10,7 +64,6 @@ export default function Welcome() {
   const schoolName = useRef([]);
   console.log(products);
   gsap.registerPlugin(useGSAP);
-  const { contextSafe } = useGSAP();
 
   products.forEach((item) => {
     if (!schoolName.current.includes(item.schoolName)) {
@@ -20,41 +73,84 @@ export default function Welcome() {
   console.log(schoolName);
   val.current = false;
 
-  const handleClick = contextSafe(() => {
-    console.log("Button Clicked");
-    const tl = gsap.timeline();
-    tl.to(".welcomePage", {
-      duration: 1,
-      ease: "power2.inOut",
-      y: "100%",
-      display: "none",
-      rotateX: 90,
-      pointerEvents: "none",
-    });
-    tl.to(".schoolselecter", {
-      duration: 1,
-      rotateZ: 0,
-      ease: "power2.inOut",
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      display: "flex",
-    });
-  });
   return (
     <>
-      <div className="relative overflow-x-hidden">
-        <div className="welcomePage min-h-screen flex items-center justify-center bg-[#f0f8ef]">
-          <button
-            onClick={handleClick}
-            className=" bg-green-800 text-green-100 text-6xl px-40 py-9 rounded-full font-bold font-serif"
-          >
-            Get Started
-          </button>
+      <div className="relative">
+
+        <div className="flex w-full items-center justify-center h-3vh bg-[#f0f8ef]">
+          <div className='w-full bg-no-repeat bg-cover bg-center shadow-md shadow-green-800' style={{ backgroundImage: `url(${WelcomeBg})` }}>
+        <Hero></Hero>
+
+<div className='flex justify-around p-20 flex-col min-h-screen items-center lg:flex-row bg-linear-to-b from-green-400 to-green-700'>
+     <Cards image={Reduse}
+                 name='Reduce'
+                  post='Minimize your consumption at the source; the best waste is the one never created.'
+                 />
+                 <Cards image={Recycle}
+                 name='Recycle'
+                  post='Give every item a second, third, and fourth life to extend its utility.'
+                 />
+                 <Cards image={Reuse}
+                 name='Reuse'
+                  post='Close the loop by processing materials into new products to save energy and resources.'
+                 />
+                 
+</div>
+            <div className='flex justify-around items-center min-h-screen p-20 flex-col lg:flex-row bg-no-repeat w-full bg-cover' style={{ backgroundImage: `url(${TechBg})` }}>
+               
+            
+                
+                <div className="w-full max-w-5xl h-[500px] mx-auto">
+                    <Swiper
+                       
+                        modules={[EffectCoverflow, Autoplay, Navigation]} 
+                        
+                        slidesPerView={3}         
+                        effect={'coverflow'}      
+                        centeredSlides={true}     
+                        loop={true}                              
+                        autoplay={{ delay: 2000, disableOnInteraction: false }} 
+                        
+                        
+                        navigation={true} 
+                        
+                      
+                        coverflowEffect={{
+                            rotate: 0, 
+                            depth: 100, 
+                            modifier: 2.5,
+                            slideShadows: true,
+                        }}
+                        
+                       
+                        className="py-12" 
+                    >
+                        {cardData.map((card) => (
+                            <SwiperSlide key={card.id}>
+                                
+                                <div className="w-full h-full flex justify-center items-center"> 
+                                    <Slides
+                                        image={card.image}
+                                        name={card.name}
+                                        post={card.post}
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+            </div>
+            
         </div>
-        <div className="schoolselecter origin-bottom hidden rotate-z-90 top-0 z-999 min-h-screen w-screen p-0 m-o overflow-hidden items-center justify-center bg-[#54c246]">
+        </div>
+
+
+        <div className="schoolselecter origin-bottom hidden rotate-z-90 top-0 z-999 min-h-screen w-screen overflow-hidden items-center justify-around flex-col p-24 bg-[#D9E4DD]">
+          <div className="flex items-center justify-center flex-col">
+            <div className="flex items-center flex-col m-15">
+            <h3 className="text-green-900 text-4xl font-serif font-semibold">Want to see your school's items!</h3>
+            <h1 className="text-green-900 text-6xl font-serif font-bold">Please select your school</h1>
+          </div>
           <select
             ref={val}
             value={selectedSchool}
@@ -64,7 +160,7 @@ export default function Welcome() {
               localStorage.setItem("schoolName", e.target.value);
               window.location.href = "/home";
             }}
-            className="mt-20 p-4 rounded-lg text-3xl font-serif border-2 font-bold outline-none"
+            className="mt- p-4 text-green-900 rounded-lg bg-white text-3xl font-serif hover:bg-green-400 font-bold outline-none"
           >
             <option value="default">Select Your School</option>
             {schoolName.current.map((school, index) => (
@@ -73,6 +169,19 @@ export default function Welcome() {
               </option>
             ))}
           </select>
+          </div>
+
+          <div className="border-4 border-green-900 w-full"></div>
+          
+          <div className="flex items-center justify-center flex-col">
+            <div className="flex items-center flex-col m-15">
+              <h3 className="text-green-900 text-4xl font-serif font-semibold">Not registered your school yet!</h3>
+              <h1 className="text-green-900 text-6xl font-serif font-bold">Please register your school first</h1>
+            </div>
+            <a href="/schoolRegister" className="max-w-fit rounded-lg transition-all duration-1000 hover:text-green-900 hover:bg-white text-white cursor-pointer mt-4 mb-1 bg-green-800 py-5 px-27">
+              <h1 className='text-3xl font-serif font-semibold flex items-center'><span className="mr-1"><MdAdd /></span> REGISTER</h1>
+            </a>
+          </div>
         </div>
       </div>
     </>

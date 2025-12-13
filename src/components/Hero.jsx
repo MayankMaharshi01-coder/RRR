@@ -1,8 +1,36 @@
-import React from 'react'
+import React, { useContext, useRef, useState } from "react";
+import { AllProductsData } from "../context/AllProducts";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap"; 
 
 const Video = "/images/new.webm"
 
 const Hero = () => {
+  const { contextSafe } = useGSAP();
+  const handleClick = contextSafe(() => {
+    console.log("Button Clicked");
+    const tl = gsap.timeline();
+    tl.to(".welcomePage", {
+      duration: 1,
+      ease: "power2.inOut",
+      y: "100%",
+      display: "none",
+      rotateX: 90,
+      pointerEvents: "none",
+    });
+    tl.to(".schoolselecter", {
+      duration: 1,
+      rotateZ: 0,
+      ease: "power2.inOut",
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      display: "flex",
+    });
+  });
+
   return (
     <><div className='flex justify-around flex-col md:flex-row h-full items-center'>
       <div className='w-[400px] md:w-2xl flex gap-10 flex-col items-center justify-center h-screen md:p-5'>
@@ -12,7 +40,7 @@ const Hero = () => {
     <p className='text-white hover:text-black '>
        Our innovative path to a sustainable world.
     </p>
-    <button className='animate-bounce hover:animate-in hover:bg-linear-to-r hover:from-green-800 hover:to-green-400 shadow-xl shadow-green-800 hover:border-2  bg-linear-to-r from-green-400 to-green-800 text-white p-3 w-sm rounded-full text-xl transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 active:shadow-md active:shadow-black hover:scale-105 '>
+    <button onClick={handleClick} className='animate-bounce hover:animate-in hover:bg-linear-to-r hover:from-green-800 hover:to-green-400 shadow-xl shadow-green-800 cursor-pointer bg-linear-to-r from-green-400 to-green-800 text-white p-3 w-sm rounded-full text-xl transition duration-500 ease-in-out hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 active:shadow-md active:shadow-black hover:scale-105 '>
       Get Started
     </button>
     </div>

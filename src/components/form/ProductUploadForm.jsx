@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { postProduct } from './api';
 import Textarea from './Textarea';
 import FormButton from './FormButton';
-
+import Slidebar from '../Slidebar';
 
 
 function ProductUploadForm({ showAlert }) {
@@ -108,6 +108,7 @@ function ProductUploadForm({ showAlert }) {
 
   return (
     <>
+    <Slidebar />
       <div className="bg-[#D9E4DD]  min-h-screen w-screen flex justify-center py-15 overflow-auto px-10">
         <Form onSubmit={formik.handleSubmit}>
           <h1 className="text-3xl font-bold self-start text-green-800 mb-6 border-b border-gray-300 w-full bg-[#D9E4DD] py-4 pl-8">

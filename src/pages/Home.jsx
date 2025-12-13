@@ -140,6 +140,7 @@ import { AllProductsData } from "../context/AllProducts";
 // ];
 
 function Home() {
+
   const schoolName = localStorage.getItem("schoolName");
   const dummyData = useContext(AllProductsData).filter((item) => item.schoolName === schoolName );
   const [openDrop, setDrop] = useState(false);
@@ -213,18 +214,11 @@ function Home() {
 
     return (
       <>
-          <Slidebar />
-         <div className="bg-[#D9E4DD] text-3xl sm:text-4xl md:text-5xl">
-        <div className="flex flex-col w-full bg-[#f0f8ef] p-4">
+        <Slidebar />
+        <div className="bg-[#D9E4DD] text-3xl sm:text-4xl md:text-5xl">
+          <div className="flex flex-col w-full bg-[#f0f8ef] p-4 rounded-t-3xl">
             <div className="flex items-center lg:flex-row flex-col justify-around">
               <div className="flex flex-col">
-  return (
-    <>
-      <div className="bg-[#D9E4DD] text-3xl sm:text-4xl md:text-5xl">
-        <HomeVideo />
-        <div className="flex flex-col w-full bg-[#f0f8ef] mt-10 p-4 rounded-t-3xl">
-          <div className="flex items-center lg:flex-row flex-col justify-around">
-            <div className="flex flex-col">
               <input
                 className="bg-white w-full sm:w-80 md:w-96 lg:w-[500px] mx-auto text-3xl p-6 h-15 m-10 shadow-md rounded-xl  "
                 value={search}

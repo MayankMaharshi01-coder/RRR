@@ -1,12 +1,14 @@
 import React from "react";
 import Form from "./Form";
 import Input from "./Input";
+import Slidebar from "../Slidebar";
 import { useFormik } from 'formik'
 import * as Yup from 'yup';
 import FormButton from "./FormButton";
 import { postRegisterSchool } from "./api";
 import { useNavigate } from "react-router-dom";
 import DropDown from './DropDown';
+import { FaBackward } from "react-icons/fa";
 function SchoolRegisterForm({ showAlert }) {
       const navigation = useNavigate();
 
@@ -78,7 +80,11 @@ function SchoolRegisterForm({ showAlert }) {
     };
 console.log('values', formik.values)
 
-return(<div className="bg-[#D9E4DD]  min-h-screen w-full flex justify-center py-30 overflow-auto px-10">
+return(
+  <>
+  <Slidebar />
+  <div className="bg-[#D9E4DD]  min-h-screen w-full flex justify-center items-center py-30 flex-col overflow-auto px-10">
+    <h1 className="text-green-900 text-2xl font-serif font-semibold">⚠️Register only if you are incharge or teacher of your school else strict action will be taken⚠️</h1>
     <Form onSubmit={formik.handleSubmit}>
     <h1 className='text-xl font-bold self-start text-green-800 mb-6 border-b border-gray-300 w-full bg-[#D9E4DD] py-4 pl-8'>School Registration Form</h1>
     <div className="bg-[#D9E4DD]
@@ -113,7 +119,10 @@ return(<div className="bg-[#D9E4DD]  min-h-screen w-full flex justify-center py-
     </div>
     <p className="text-xl text-green-800">Already registered? <a className="font-semibold hover:underline" href="/schoolLogin">Log in</a></p>
     </Form>
-</div>)
+    <a href="/" className="bg-white cursor-pointer text-green-800 px-15 xl:mt-27 py-2 mt-7 border-2 shadow-xl border-white-800  inline-flex gap-2 font-semibold text-4xl font-serif items-center transition-all duration-700 rounded-[9px] group hover:text-white hover:bg-green-800"><FaBackward /> GO BACK </a>
+  </div>
+  </>
+)
 };
 
 export default SchoolRegisterForm;

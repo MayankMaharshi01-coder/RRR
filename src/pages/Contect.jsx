@@ -116,10 +116,10 @@ export default function Contact() {
           className="mb-12 text-center sm:mb-16"
         >
           <h1 className="mb-4 text-4xl font-bold text-transparent sm:text-5xl lg:text-6xl bg-linear-to-r from-green-300 via-emerald-400 to-green-500 bg-clip-text">
-            Get In Touch
+            Contact Us
           </h1>
           <p className="max-w-2xl mx-auto text-base sm:text-lg text-black/70">
-            Have a question or feedback? We'd love to hear from you. Send us a
+            Have any question, website related issue, suggestions or feedback? We'd love to hear from you. Send us a
             message and we'll respond as soon as possible.
           </p>
         </motion.div>
@@ -145,9 +145,9 @@ export default function Contact() {
                 </div>
                 <h3 className="text-lg font-semibold">Phone</h3>
               </div>
-              <p className="ml-16 text-sm text-black/70">+91-XXX-XXX-XXXX</p>
+              <p className="ml-16 text-sm text-black/70">+91 90243 03162</p>
               <p className="mt-1 ml-16 text-xs text-black/50">
-                Monday to Friday, 9 AM - 6 PM
+                Monday to Friday, 10 AM - 4 PM
               </p>
             </motion.div>
 
@@ -166,7 +166,7 @@ export default function Contact() {
                 <h3 className="text-lg font-semibold">Email</h3>
               </div>
               <p className="ml-16 text-sm text-black/70">
-                mailto:Codechuru@gmail.com
+                mail to:codechuru@gmail.com
               </p>
               <p className="mt-1 ml-16 text-xs text-black/50">
                 We'll get back to you in 24 hours

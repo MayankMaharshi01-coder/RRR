@@ -19,7 +19,7 @@ export default function SchoolPage() {
 
   return(
     <>
-      <div className=" h-screen w-full flex items-center flex-col mt-14 xl:mt-42">
+      <div className=" h-screen w-full flex items-center flex-col pt-14 xl:pt-42">
       <div className="border-2 border-green-800 w-fit xl:border-none xl:bg-transparent bg-white rounded-4xl">
         <div className="xl:flex-row p-10 items-center gap-8 flex flex-col justify-between min-w-full">
         <div className="border-3 border-green-800 w-full xl:w-fit rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-700">
