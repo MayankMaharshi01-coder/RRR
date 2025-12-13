@@ -181,9 +181,9 @@ export default function Welcome() {
               className="mt- p-4 text-green-900 rounded-lg bg-white text-3xl font-serif hover:bg-green-400 font-bold outline-none"
             >
               <option value="default">Select Your School</option>
-              {schoolName.current.map((school, index) => (
-                <option key={index} value={school}>
-                  {school}
+              {schoolData.map((school, index) => (
+                <option key={index} value={school.schoolName}>
+                  {school.schoolName}
                 </option>
               ))}
             </select>
