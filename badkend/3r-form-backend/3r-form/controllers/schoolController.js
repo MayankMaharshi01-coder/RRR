@@ -29,14 +29,17 @@ exports.postSchoolRegister = (req, res, next) => {
     })
 };
 
-exports.getCurrentSchool = [(req, res, next) => {
-  if(!req.session.school) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
-  next();
-},(req, res, next) => {
-    const { _id } = req.session.school;
-    School.findById(_id)
+exports.getCurrentSchool = [
+  (req, res, next) => {
+    if (!req.session.school) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    next();
+  },
+  (req, res, next) => {
+    const schoolId = req.session.school; // session.school is just the ID
+    School.findById(schoolId)
+      .select('-password -__v') // Exclude sensitive fields
       .then(school => {
         if (!school) {
           return res.status(404).json({ error: 'School not found' });
@@ -46,7 +49,8 @@ exports.getCurrentSchool = [(req, res, next) => {
       .catch(error => {
         res.status(500).json({ error: 'Failed to fetch school' });
       });
-}];
+  }
+];
 
 
 exports.postSchoolLogin =  async (req, res, next) => {

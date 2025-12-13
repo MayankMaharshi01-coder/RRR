@@ -34,7 +34,8 @@ function SchoolLoginForm({ showAlert }) {
           })
           navigate('/uploadProducts', { replace:true } )
          })).catch((error) => {
-             showAlert(error.response.data.error ,"error", "logNot");
+          console.log('Login error:', error);
+             showAlert('any',"error", "logNot");
              window.scrollTo({
             top:0,
             behavior: 'smooth'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import Slidebar from "./components/Slidebar";
@@ -16,10 +16,16 @@ import { AlertPopup } from "./components/form/MiniComp";
 import SchoolPage from './components/SchoolPage';
 import Welcome from './pages/Welcome';
 import ProductEdit from './components/form/ProductEdit';
+import { getCurrentSchool } from './components/form/api';
+import NoAuthRoutes from './pages/NoAuthRoutes';
+
 
 function App() {
 
     const [alert, setAlert] = useState(null);
+
+    const [auth, setAuth] = useState(undefined);
+
 
     function showAlert(message, type, from){
       console.log("Alert called", message, type);
@@ -33,6 +39,15 @@ function App() {
         }, 4000);
     }
 
+  useEffect(() => {
+getCurrentSchool().then((school) => {
+      setAuth(school);
+      console.log('school', school);
+    }).catch((err) => {
+      setAuth(null);
+    });
+  }, []);
+console.log('auth in appjsx', auth);
   return (
     <BrowserRouter>
     <div className="bg-green-100 scroll-w-0 relative ">
@@ -45,10 +60,10 @@ function App() {
             <Route path="/inspiration" element={<Inspiration />} />
             <Route path="/initiatives" element={<Initiatives />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/yourSchool" element={<YourSchool />} />
+            <Route path="/yourSchool" element={<YourSchool showAlert={showAlert} auth={auth}/>} />
             <Route path="/schoolContribution" element={<SchoolContribution />} />
             <Route path="/uploadProducts" element={<ProductUploadForm showAlert={showAlert}/>}/>
-            <Route path="/schoolLogin" element={<SchoolLoginForm showAlert={showAlert}/>}/>
+            <Route path="/schoolLogin" element={<NoAuthRoutes auth={auth} children={<SchoolLoginForm showAlert={showAlert}/>}/>}/>
             <Route path="/schoolRegister" element={<SchoolRegisterForm showAlert={showAlert}/>}/>
             <Route path="/schoolPage" element={<SchoolPage />}/>
             <Route path="/productEdit/:_id" element={<ProductEdit showAlert={showAlert}/>}/>

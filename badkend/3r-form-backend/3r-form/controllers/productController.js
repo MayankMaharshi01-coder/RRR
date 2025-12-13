@@ -1,5 +1,5 @@
 const Product = require('../models/product');
-
+const mongoose = require('mongoose');
 exports.postProduct = [
   (req, res, next) => {
     console.log('cookie', req.body, req);
@@ -152,12 +152,14 @@ exports.getProduct = (req, res, next) => {
 exports.getSchoolProducts = async (req, res, next) => {
   const schoolId = req.params.schoolId;
 
-  if (!mongoose.Schema.Types.ObjectId.isValid(sellerId)) {
+  if (!mongoose.Types.ObjectId.isValid(schoolId)) {
     return res.status(400).json({ message: 'invalid school id' });
   }
   const products = await Product.find({ school: schoolId }).sort({
     createdAt: -1,
   });
+  console.log('product from getSchoolProduts', products);
+  
   res.status(200).json(products);
 };
 

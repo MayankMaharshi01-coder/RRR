@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import SelectSchool from "../components/SelectSchool";
 import Slidebar from "../components/Slidebar";
 import { AllProductsData } from "../context/AllProducts";
 import SchoolLoginForm from "../components/form/SchoolLoginForm";
-
-const YourSchool = () => {
-
+import { getSchoolProducts } from "../components/form/api"; 
+import Cards from "../components/Cards";
+const YourSchool = ({ auth, showAlert }) => {
+const [schoolDataList2, setSchoolDataList2] = useState([]);
 const schoolDataList = useContext(AllProductsData);
 // console.log("School Data List 2:", schoolDataList2);
   // const schoolDataList =  [
@@ -109,12 +110,28 @@ const schoolDataList = useContext(AllProductsData);
   //   },
   // ]
   console.log("School Data List:", schoolDataList);
-  
+  useEffect(() => {
+  if(auth) {
+getSchoolProducts(auth._id).then((products) => {
+      setSchoolDataList2(products);
+      console.log('Products for school:', products);
+    }).catch((err) => {
+      console.log('Error fetching products for school:', err);
+    });
+  }
+  }, [auth])
+
+console.log('schooldetail2', schoolDataList2);
 
   return(
     <>
       <div className="h-screen w-full">
-        <SchoolLoginForm />
+        {auth ?
+          <div className="flex flex-row h-full">
+            {schoolDataList2 && schoolDataList2.map((schoolData, index) => <Cards key={index} title={schoolData.title} _id={schoolData._id} thumbnail={schoolData.thumbnail} />)}
+            </div>
+         : <SchoolLoginForm showAlert={showAlert}/>
+          }
       </div>
     </>
   )
