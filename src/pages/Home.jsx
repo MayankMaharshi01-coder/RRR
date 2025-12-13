@@ -140,6 +140,17 @@ import { getProducts } from "../components/form/api";
 // ];
 
 function Home() {
+ const [productData, setProductData] = useState([]);
+  useEffect(() => {
+    getProducts().then((data) => {
+      setProductData(data);
+      console.log(data);
+    });
+  }, []);
+
+
+
+
   const schoolName = localStorage.getItem("schoolName");
   const dummyData = useContext(AllProductsData).filter(
     (item) => item.schoolName === schoolName
@@ -183,15 +194,11 @@ function Home() {
   const handleClick = (e) => {
     document.body.classList.add("no-scroll");
 
-    const detailsArr = e.target.id.split("&/&/&");
-    let itemDetails = {
-      imgUrl: detailsArr[0],
-      description: detailsArr[1],
-    };
-    dummyData.forEach((item) => {
+    const detailId = e.target.id
+    
+    productData.forEach((item) => {
       if (
-        item.imgUrl === itemDetails.imgUrl &&
-        item.description === itemDetails.description
+      detailId === item._id
       ) {
         setdetailCard(item);
         console.log(detailCard, item);
@@ -216,14 +223,7 @@ function Home() {
     }
   };
 
-  const [productData, setProductData] = useState([]);
-  useEffect(() => {
-    getProducts().then((data) => {
-      setProductData(data);
-      console.log(data);
-    });
-  }, []);
-
+ 
   return (
     <>
       <Slidebar />
@@ -457,7 +457,7 @@ function Home() {
       </div>
       <DetailCard
         detailCard={{
-          imgUrl: detailCard.imgUrl,
+          imgUrl: `http://localhost:3000/${detailCard.thumbnail}`,
           category: detailCard.category,
           name: detailCard.name,
           description: detailCard.description,
