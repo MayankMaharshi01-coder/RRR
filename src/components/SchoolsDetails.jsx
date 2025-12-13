@@ -75,6 +75,7 @@ export default function SchoolDetail() {
         setSchoolData(data);
         console.log(data);
       });
+      
     }, []);
 
     return (
