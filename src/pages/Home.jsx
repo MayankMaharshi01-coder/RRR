@@ -421,17 +421,6 @@ function Home() {
            
            
            
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
            {/*  {data.map(function ({
               category,
               name,
