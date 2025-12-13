@@ -97,7 +97,7 @@ export default function Welcome() {
           >
             <Hero></Hero>
 
-<div className='flex justify-around p-20 flex-col min-h-screen items-center lg:flex-row bg-linear-to-b from-green-400 to-green-700'>
+<div className='flex justify-around p-20 flex-col min-h-screen items-center gap-8 lg:flex-row bg-linear-to-b from-green-400 to-green-700'>
      <Cards image={Reduse}
                  name='Reduce'
                   post='Minimize your consumption at the source; the best waste is the one never created.'
@@ -181,9 +181,9 @@ export default function Welcome() {
               className="mt- p-4 text-green-900 rounded-lg bg-white text-3xl font-serif hover:bg-green-400 font-bold outline-none"
             >
               <option value="default">Select Your School</option>
-              {schoolName.current.map((school, index) => (
-                <option key={index} value={school}>
-                  {school}
+              {schoolData.map((school, index) => (
+                <option key={index} value={school.schoolName}>
+                  {school.schoolName}
                 </option>
               ))}
             </select>

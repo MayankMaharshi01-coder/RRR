@@ -424,7 +424,7 @@ function Home() {
                   schoolName={schoolName}
                   key={_id}
                   id={_id}
-                  goodsData={dummyData}
+                  goodsData={productData}
                   handleClick={handleClick}
                 />
               );
