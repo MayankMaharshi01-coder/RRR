@@ -399,7 +399,7 @@ function Home() {
            
            {productData.map((product, index) => {
               return <div className="flex bg-white p-3 gap-7 max-w-full flex-wrap items-center flex-col">
-                <img src={product.thumbnail} alt={product.title} className="w-32 h-32 object-cover" />
+                <img src={`http://localhost:3000/${product.thumbnail}`} alt={product.title} className="w-32 h-32 object-cover" />
                 <h1>{product.title}</h1>
                 <h1>{product.description}</h1>
               </div>
