@@ -204,10 +204,10 @@ function Home() {
   const handleCategoryClick = (category) => {
     setSearch("");
     if (category === "ALL") {
-      setData(dummyData);
+      setData(productData);
       return;
     } else {
-      let newdata = dummyData.filter((item) => item.category.toUpperCase() === category.toUpperCase()); 
+      let newdata = productData.filter((item) => item.category.toUpperCase() === category.toUpperCase()); 
       setData(newdata)  
       console.log(newdata);
     setData(newdata);}
@@ -216,7 +216,7 @@ function Home() {
 
   const [productData, setProductData] = useState([]);
       useEffect(() => {
-        getProducts(schoolName).then((data)=> {
+        getProducts().then((data)=> {
           setProductData(data);
           console.log(data);
         });
@@ -242,7 +242,7 @@ function Home() {
                 <div
                   onClick={openDropdown}
                   className="text-3xl font-serif font-semibold mb-10 flex items-center cursor-pointer"
-                >
+                >productData
                   <h1>Sort Products</h1>
                   <RiArrowDropDownLine size={50} />
                 </div>
