@@ -311,10 +311,10 @@ return( <div className="bg-[#D9E4DD]  min-h-screen w-screen flex justify-center 
               value={formik.values.availability}
               onChange={formik.handleChange}
             >
-             <option className="bg-green-900" value={true}>
+             <option className="bg-green-900" value="1">
                 available
              </option>
- <option className="bg-green-900" value={false}>
+ <option className="bg-green-900" value="0">
                 unavailable
               </option>
             </DropDown>

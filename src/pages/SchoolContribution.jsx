@@ -24,12 +24,12 @@ export default function RRRPage() {
     </div>
 
 
-    <div className="max-w-6xl mx-auto mt-10 px-4">
+    <div className="max-w-6xl mx-auto mt-25 px-4">
       <h2 className="text-3xl font-bold mb-4 text-green-800 text-center">
         Schools Contribution Ranking
       </h2>
 
-      <div className="h-1 w-40 bg-green-400 mx-auto rounded-full mb-6" />
+      <div className="h-1 w-96 bg-green-400 mx-auto rounded-full mb-6" />
 
       <SchoolDetail />
     </div>
