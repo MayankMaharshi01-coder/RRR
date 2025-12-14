@@ -14,7 +14,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import Hero from "../components/Hero";
-import Cards from "../components/Cards";
+import WelcomeCard from "../components/WelcomeCard";
 import Slides from "../components/Slides";
 import { MdAdd } from "react-icons/md";
 
@@ -32,31 +32,31 @@ const cardData = [
     post: "Minimize your consumption at the source; the best waste is the one never created.",
   },
   {
-    id: 1,
+    id: 2,
     image: Recycle,
     name: "Recycle",
     post: "Give every item a second, third, and fourth life to extend its utility.",
   },
   {
-    id: 2,
-    image: Reuse,
-    name: "Reuse",
-    post: "Close the loop by processing materials into new products to save energy and resources.",
-  },
-  {
-    id: 2,
-    image: Reuse,
-    name: "Reuse",
-    post: "Close the loop by processing materials into new products to save energy and resources.",
-  },
-  {
     id: 3,
+    image: Reuse,
+    name: "Reuse",
+    post: "Close the loop by processing materials into new products to save energy and resources.",
+  },
+  {
+    id: 4,
+    image: Reuse,
+    name: "Reuse",
+    post: "Close the loop by processing materials into new products to save energy and resources.",
+  },
+  {
+    id: 5,
     image: Reduse,
     name: "Reuse",
     post: "Close the loop by processing materials into new products to save energy and resources.",
   },
   {
-    id: 3,
+    id: 6,
     image: Reduse,
     name: "Reuse",
     post: "Close the loop by processing materials into new products to save energy and resources.",
@@ -98,15 +98,15 @@ export default function Welcome() {
             <Hero></Hero>
 
 <div className='flex justify-around p-20 flex-col min-h-screen items-center gap-8 lg:flex-row bg-linear-to-b from-green-400 to-green-700'>
-     <Cards image={Reduse}
+     <WelcomeCard image={Reduse}
                  name='Reduce'
                   post='Minimize your consumption at the source; the best waste is the one never created.'
                  />
-                 <Cards image={Recycle}
+                 <WelcomeCard image={Recycle}
                  name='Recycle'
                   post='Give every item a second, third, and fourth life to extend its utility.'
                  />
-                 <Cards image={Reuse}
+                 <WelcomeCard image={Reuse}
                  name='Reuse'
                   post='Close the loop by processing materials into new products to save energy and resources.'
                  />
