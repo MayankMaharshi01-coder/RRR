@@ -87,7 +87,6 @@ function ProductEdit({ showAlert }) {
           const promise = postEditProduct(_id, data);
           promise
             .then((responseData) => {
-              // Refetch product and reset form to ensure images are always strings, not File objects
               getProductById(_id).then((product) => {
                 setDetail(product);
                 formik.resetForm({ values: {

@@ -129,9 +129,6 @@ const Footer = () => {
            
             </motion.div>
    <hr />
-            {/* <hr className="bg-red-700 h-1 text-amber-200" /> */}
-            {/* Quick Links */}
-            {/* Contact */}
             <motion.div
               className="flex flex-col items-start"
               initial={{ opacity: 0, y: 30 }}
@@ -146,14 +143,11 @@ const Footer = () => {
               <p className=" "> 📞 +91 90243 03162</p>
               <p className="">✉️ codechuru@gmail.com</p>
             </motion.div>
-            {/* <hr className="text-white bg-wjite fill-white"/> */}
-            {/* Social Media */}
           </div>
         </div>
         <hr />
       </div>
 
-      {/* Bottom Strip */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

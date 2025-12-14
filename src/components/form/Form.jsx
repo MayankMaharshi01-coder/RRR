@@ -21,9 +21,3 @@ return(
 };
 
 export default Form;
-
-
-
-        /*<div class="flex items-center justify-center w-screen min-h-[400px] bg-cover bg-center bg-no-repeat rounded-md" style="background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800&auto=format&fit=crop&q=90');">
-        </div>
-      <form className='flex flex-col gap-6 items-start'></form>*/

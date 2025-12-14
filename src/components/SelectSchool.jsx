@@ -20,74 +20,16 @@ function SelectSchool({ schoolDataList }) {
     'Bidasar',
     'Churu'
    ]
-   /*const productList = schoolDataList;
-  console.log("Product List:", productList);
-
-  let selectedSchoolAndDistrict = {};
-  let selectedSchoolProducts = useRef([]);
-  const [selectedDistrict, setSelectedDistrict] = useState("default");
-  const [selectedSchool, setSelectedSchool] = useState("default");*/
 
   function selectedSchoolProductsfun(event) {
-
-    /*selectedSchoolProducts.current = [];
-    productList.forEach((item) => {
-      if (
-        item.schoolName === event.target.value &&
-        item.schoolName.split(", ")[1] === selectedDistrict
-      ) {
-        selectedSchoolProducts.current.push(item);
-      }
-    });*/
   }
   function handleDistrictChange(event) {
      setSelectedSubDistrict(event.target.value);
-     setSelectedSchool("default");
-   /*
-    setSelectedDistrict(event.target.value);
-    setSelectedSchool("default");
-    console.log("Selected District:", event.target.value);
-    */
   }
 
   function handleSchoolChange(event) {
     setSelectedSchool(event.target.value);
-    /*selectedSchoolAndDistrict.school = event.target.value;
-    selectedSchoolAndDistrict.district = selectedDistrict;
-    console.log("Selected School and District:", selectedSchoolAndDistrict);
-    setSelectedSchool(event.target.value);
-
-    selectedSchoolProductsfun(event);
-
-    console.log("Selected School Products:", selectedSchoolProducts.current);*/
   }
-
-  /*const districts = [];
-
-  productList.forEach((item) => {
-    const district = item.schoolName.split(", ")[1];
-    console.log(district);
-    if (!districts.includes(district)) {
-      districts.push(district);
-    }
-  });*/
-  /*const schoolsInSelectedDistrict = [];
-  if (selectedDistrict !== "default") {
-    const schoolName = [];
-    productList.forEach((item) => {
-      const district = item.schoolName.split(", ")[1];
-      if (
-        district === selectedDistrict &&
-        !schoolName.includes(item.schoolName)
-      ) {
-        schoolName.push(item.schoolName);
-        schoolsInSelectedDistrict.push(item.schoolName);
-      }
-    });
-  } else {
-    [];
-  }
-  console.log(schoolsInSelectedDistrict);*/
 
   useEffect(() => {
      if(selectedSubDistrict !== 'default') {

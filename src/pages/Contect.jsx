@@ -57,29 +57,6 @@ export default function Contact() {
       });
   };
 
-
-  // const sendEmail = (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-
-  //   emailjs
-  //     .sendForm("service_mb6w45o", "template_dof9sa9", form.current, {
-  //       publicKey: "gXtfXl_LMKWPfSCt9",
-  //     })
-  //     .then(
-  //       () => {
-  //         setSubmitted(true);
-  //         setLoading(false);
-  //         form.current.reset();
-  //         setTimeout(() => setSubmitted(false), 4000);
-  //       },
-  //       (error) => {
-  //         console.log("FAILED...", error.text);
-  //         setLoading(false);
-  //       }
-  //     );
-  // };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

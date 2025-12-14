@@ -86,6 +86,3 @@ return(<>
 };
 
 export default Input;
-
-
-//<p className="text-blue-label font-black text-xl">{children}</p>
