@@ -7,6 +7,7 @@ import FormButton from "./FormButton";
 import { postLoginSchool } from "./api";
 import { useNavigate } from "react-router-dom";
 import Slidebar from "../Slidebar";
+import { FaBackward } from "react-icons/fa";
 
 
 function SchoolLoginForm({ showAlert }) {
@@ -49,7 +50,6 @@ function SchoolLoginForm({ showAlert }) {
 
 return(
   <>
-  <Slidebar />
   <div className="bg-[#D9E4DD]  min-h-screen w-full flex justify-center py-30 overflow-auto px-10">
     <Form onSubmit={formik.handleSubmit} className=" h-130">
     <h1 className='text-3xl font-bold self-start text-green-800 mb-6 border-b border-gray-300 w-full bg-[#D9E4DD] py-4 pl-8'>School Login Form</h1>
@@ -67,6 +67,7 @@ return(
     <FormButton className=" mt-10" formik={formik}>Login</FormButton>
     </div>
     </Form>
+    <a href="/" className="bg-white cursor-pointer text-green-800 px-15 xl:mt-27 py-2 mt-7 border-2 shadow-xl border-white-800  inline-flex gap-2 font-semibold text-4xl font-serif items-center transition-all duration-700 rounded-[9px] group hover:text-white hover:bg-green-800"><FaBackward /> GO BACK </a>
     </div>
   </>
 )
