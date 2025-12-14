@@ -34,7 +34,7 @@ const productSchema = new mongoose.Schema({
     enum: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '12th pass', "Don't Study in School"]
   },
   availability: {
-   type: Numbber,
+   type: Number,
    default: 1
   },
   images: [{
