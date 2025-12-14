@@ -643,7 +643,7 @@ function Home() {
       );
 
       setproductData(product);
-      console.log(product, data[5].school, selectedSchool.current._id);
+      console.log(product, data, selectedSchool.current._id);
     });
   }, []);
 
@@ -905,7 +905,7 @@ function Home() {
               </div>
            })} */}
 
-            {dummyData.map(function ({
+            {productData.map(function ({
               category,
               name,
               thumbnail,

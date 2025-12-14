@@ -26,13 +26,13 @@ console.log('schooldetail2', schoolDataList2);
   return(
     <>
     <Slidebar />
-      <div className="h-screen w-full">
+      <div className="min-h-screen w-full">
         {auth ?
           <div className="flex items-center flex-col gap-10">
             <div className="flex justify-around">
               <a href="/uploadProducts" className="bg-white cursor-pointer text-green-800 px-15 xl:mt-27 py-2 mt-7 border-2 shadow-xl border-white-800  inline-flex gap-2 font-semibold text-4xl font-serif items-center transition-all duration-700 rounded-[9px] group hover:text-white hover:bg-green-800">Upload Products</a>
             </div>
-            <div className="flex">
+            <div className="flex flex-wrap justify-center">
             {schoolDataList2 && schoolDataList2.map((schoolData, index) => <Cards key={index} title={schoolData.title} _id={schoolData._id} description={schoolData.description} availability={schoolData.availability ? "Available" : "Unavailable"} thumbnail={`http://localhost:3000/${schoolData.thumbnail}`} />)}
             </div>
           </div>
