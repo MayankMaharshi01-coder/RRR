@@ -76,7 +76,6 @@ export function getCurrentSchool() {
       withCredentials: true,
     })
     .then((response) => {
-      console.log('API response', response.data);
       return response.data;
     })
     .catch((error) => {

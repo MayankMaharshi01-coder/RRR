@@ -10,7 +10,7 @@ const port = 3000;
 const productRoute = require('./routes/productRoute');
 const errorController = require('./controllers/errorController');
 const mongoURI =
-  'mongodb+srv://tansukh:TANSUKH_CHURU@cluster0.tw1aqnk.mongodb.net/3R?appName=Cluster0';
+  'mongodb+srv://tansukh:TANSUKH_CHURU@cluster0.tw1aqnk.mongodb.net/3R?appName=wwwCluster0';
 const multer = require('multer');
 const schoolRoute = require('./routes/schoolRoute');
 // Middleware to parse JSON bodies

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Link } from "react";
-import { getSchoolById } from "./form/api";
+import { getSchoolById, getSchoolLeaderBoard } from "./form/api";
 import { FaBackward } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 
@@ -11,9 +11,22 @@ export default function SchoolPage() {
 
   useEffect(() => {
     if (schoolId) {
-      getSchoolById(schoolId).then((data) => {
-        setSelectedSchool(data);
-      })
+      const fetchSchoolData = async () => {
+        try {
+          const [schoolDetails, leaderboardData] = await Promise.all([
+            getSchoolById(schoolId),
+            getSchoolLeaderBoard(),
+          ]);
+
+          const schoolFromLeaderboard = leaderboardData.find(school => school._id === schoolId);
+          const totalProducts = schoolFromLeaderboard ? schoolFromLeaderboard.totalProducts : 0;
+
+          setSelectedSchool({ ...schoolDetails, totalProducts });
+        } catch (error) {
+          console.error("Failed to fetch school details:", error);
+        }
+      };
+      fetchSchoolData();
     }
   }, [schoolId]);
 
@@ -33,6 +46,8 @@ export default function SchoolPage() {
         <h1 className="text-green-800"><span className="text-black">School Number: </span>{selectedSchool?.schoolPhone}</h1>
         <h1 className="text-green-800"><span className="text-black">Incharge Name: </span>{selectedSchool?.inchargeName}</h1>
         <h1 className="text-green-800"><span className="text-black">Incharge Number: </span>{selectedSchool?.inchargePhone}</h1>
+        <h1 className="text-green-800"><span className="text-black">Total Products: </span>{selectedSchool?.totalProducts}</h1>
+        <h1 className="text-green-800"><span className="text-black">Helped Students: </span></h1>
       </div>
       </div>
       </div>

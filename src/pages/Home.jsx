@@ -16,7 +16,6 @@ function Home() {
   const selectedSchool = useRef([]);
 
   const schoolName = localStorage.getItem("schoolName");
-  console.log(schoolName);
   useEffect(() => {
     getAllSchool().then((res) => {
       console.log(res);
@@ -284,23 +283,23 @@ function Home() {
 
             {productData.map(function ({
               category,
-              name,
+              availability,
+              title,
               thumbnail,
-              description,
               schoolName,
               _id,
             }) {
               return (
                 <Item
                   category={category}
-                  name={name}
+                  name={title}
                   imgUrl={`http://localhost:3000/${thumbnail}`}
-                  description={description}
                   schoolName={schoolName}
                   key={_id}
                   id={_id}
                   goodsData={dummyData}
                   handleClick={handleClick}
+                  availability={availability ? "Available" : "Unavailable"}
                 />
               );
             })}
@@ -310,10 +309,14 @@ function Home() {
       <DetailCard
         detailCard={{
           imgUrl: `http://localhost:3000/${detailCard.thumbnail}`,
+          imgUrl2: `http://localhost:3000/${detailCard.images}`,
           category: detailCard.category,
-          name: detailCard.name,
+          name: detailCard.title,
           description: detailCard.description,
-          schoolName: detailCard.schoolName,
+          donor: detailCard.donorName,
+          availability: detailCard.availability,
+          donorClass: detailCard.donorClass,
+          condition: detailCard.condition,
         }}
       />
     </>

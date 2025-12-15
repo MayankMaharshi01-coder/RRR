@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Slidebar from './Slidebar';
 
 const Cards = (props) => {
-console.log('prop', props);
 
     return (
         <>
@@ -15,11 +14,8 @@ console.log('prop', props);
               className="sm:p-5 w-full max-h-1/2 object-contain bg-gray-50 rounded-xl"
             />
             <p className="text-3xl font-serif text-center font-bold text-green-800">{props.title}</p> 
-            <p className="text-3xl font-serif text-center font-bold text-green-800">{props.description}</p>
             <h3 className="text-3xl font-serif text-center font-bold text-green-800">{props.availability}</h3>
             <Link to={"/productEdit/" + props._id} className='bg-green-700 mb-11 hover:bg-green-800 text-white font-bold py-2 px-8 text-2xl rounded-lg'>Edit Product</Link>
-            <Link to={"/product/" + props._id + "/helpedStudent"} className='bg-green-700 mb-11 hover:bg-green-800 text-white font-bold py-2 px-4 rounded'>Add Helped Student</Link>
-            
         </div>
         </>
     );

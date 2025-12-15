@@ -29,7 +29,6 @@ function App() {
 
 
     function showAlert(message, type, from){
-      console.log("Alert called", message, type);
         setAlert({
              message: message,
              type: type,
@@ -43,12 +42,10 @@ function App() {
   useEffect(() => {
 getCurrentSchool().then((school) => {
       setAuth(school);
-      console.log('school', school);
     }).catch((err) => {
       setAuth(null);
     });
   }, []);
-console.log('auth in appjsx', auth);
   return (
     <BrowserRouter>
     <div className="bg-green-100 scroll-w-0 relative ">

@@ -27,6 +27,7 @@ const Footer = () => {
               Get Started
             </button>
           </a>
+          <hr className="mt-10 " />
         </motion.div>
         <div className="flex justify-between flex-col  gap-10">
           <motion.div

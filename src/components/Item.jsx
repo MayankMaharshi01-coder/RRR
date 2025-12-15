@@ -9,6 +9,7 @@ export default function Item({
   goodsData,
   id,
   handleClick,
+  availability,
  
 }) {
   
@@ -21,23 +22,20 @@ export default function Item({
           alt={name}
           onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/400x300?text=No+Image'; }}
         />
-        <div className="p-4">
-          <p className=" sm:text-2xl text-black font-bold text-xl mt-2 tracking-wide  transition duration-200">
-          {category}
+        <div className="p-4 flex flex-col text-green-800 gap-4">
+          <p className=" sm:text-2xl font-bold text-xl tracking-wide  transition duration-200">
+          <span className="text-black">Category: </span>{category}
+          </p>
+        <p className=" sm:text-2xl font-bold text-xl tracking-wide  transition duration-200">
+          <span className="text-black">Product: </span>{name}
         </p>
-        <p className=" sm:text-xl text-black font-bold text-xl mt-2 tracking-wide  transition duration-200">
-          {name}
+        <p className=" sm:text-2xl font-bold text-xl tracking-wide  transition duration-200">
+          <span className="text-black">Status: </span>{availability}
         </p>
-        <h3 className=" sm:text-xl font-semibold text-gray-600 text-base mt-1 tracking-tight">
-          {schoolName}
-        </h3>
-        <h3 className=" sm:text-xl  sm:px-4 font-medium text-gray-700 text-center text-sm px-4 mt-1 line-clamp-2">
-          {description}
-        </h3>
         <div className="w-full flex items-center justify-center">
         <button onClick={handleClick}
           id={`${id}`}
-          className=" sm:text-sm hover:animate-in  sm:py-3  sm:px-6 w-40 sm:w-auto block m-5 text-white font-semibold text-sm text-center py-3 px-5 bg-green-800 rounded-full shadow-md hover:bg-linear-to-r hover:to-green-800  hover:from-green-400 hover:shadow-lg transition  duration-500   cursor-pointer"
+          className=" sm:text-sm hover:animate-in lg:text-xl sm:py-3  sm:px-6 w-40 sm:w-auto block text-white font-semibold text-sm text-center py-3 px-15 bg-green-800 rounded-full shadow-md hover:bg-linear-to-r hover:to-green-800  hover:from-green-400 hover:shadow-lg transition  duration-500   cursor-pointer"
         >
           More Details...
         </button>
