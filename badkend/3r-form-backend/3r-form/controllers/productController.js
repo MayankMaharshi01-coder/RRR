@@ -212,3 +212,33 @@ exports.postAddHelpedStudent = (req, res, next) => {
       res.status(500).json({ error: 'Failed to add helped student' });
     });
 };
+
+
+exports.getProductsByCategory = (req, res, next) => {
+  const { category } = req.query;
+  
+ 
+  if (!category) {
+    return res.status(400).json({ 
+      message: 'Category parameter is required' 
+    });
+  }
+  
+ 
+  const filter = { 
+    availability: { $gt: 0 },
+    category: category
+  };
+  
+  Product.find(filter)
+    .then((products) => {
+      console.log(`Fetched ${products.length} products for category ${category}`);
+      res.status(200).json(products);
+    })
+    .catch((error) => {
+      console.error(`Error fetching products for category ${category}:`, error);
+      res.status(500).json({ 
+        error: 'Failed to fetch products by category' 
+      });
+    });
+};

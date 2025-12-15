@@ -5,6 +5,7 @@ const productController = require('../controllers/productController');
 
 productRoute.post('/product', productController.postProduct);
 productRoute.get('/allProducts', productController.getAllProducts);
+productRoute.get('/category', productController.getProductsByCategory);
 productRoute.get('/product/:id', productController.getProduct);
 productRoute.get('/school/:schoolId/products', productController.getSchoolProducts)
 productRoute.get('/product/search', productController.getProductSearch);

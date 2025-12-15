@@ -55,15 +55,51 @@ function ProductEdit({ showAlert }) {
                 'Select a valid condition'
               )
               .required('Condition is required'),
-            category: Yup.string().required('Category is required'),
+            category: Yup.string()
+              .oneOf(
+                [
+                  'Electronics',
+                  'Books',
+                  'Clothing',
+                  'Sports Equipment',
+                  'Art Supplies',
+                  'Laboratory Equipment',
+                  'Stationery',
+                  'Footwear',
+                  'Bag',
+                  'Other',
+                ],
+                'Select a valid category'
+              )
+              .required('Category is required'),
           });
 
+
+      
+      const validCategories = ['Electronics', 'Books', 'Clothing', 'Sports Equipment', 'Art Supplies', 'Laboratory Equipment', 'Stationery', 'Footwear', 'Bag', 'Other'];
+      
+      const mapCategoryToNew = (oldCategory) => {
+        if (validCategories.includes(oldCategory)) {
+          return oldCategory;
+        }
+        
+        const categoryMap = {
+          'Furniture': 'Other',
+          'footwear': 'Footwear',
+          'Clothes': 'Clothing',
+          'clothes': 'Clothing',
+          'Stationary': 'Stationery',
+          'bag': 'Bag',
+        };
+        
+        return categoryMap[oldCategory] || 'Other'; 
+      };
 
       const formik = useFormik({
         initialValues: {
           thumbnail: detail.thumbnail || null,
           title: detail.title || '',
-          category: detail.category || '',
+          category: mapCategoryToNew(detail.category) || 'Other',
           condition: detail.condition || '',
           images: detail.images || [],
           donorName: detail.donorName || '',
@@ -186,19 +222,53 @@ return( <div className="bg-[#D9E4DD]  min-h-screen w-screen flex justify-center 
             >
               Title
            </Input>
-                 <Input
-              type="text"
+                 <DropDown
+              name="category"
+              label="Product Category"
+              useFor="form"
               touched={formik.touched.category}
               errors={formik.errors.category}
-              name="category"
               value={formik.values.category}
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-                editing={true}
-              placeholder=" "
             >
-              Product Category
-            </Input>
+              <option
+                disabled
+                className=" disabled:text-gray-200 bg-green-900"
+                value="category"
+              >
+                Select Product Category
+              </option>
+              <option className="bg-green-900" value="Electronics">
+                Electronics
+              </option>
+              <option className="bg-green-900" value="Books">
+                Books
+              </option>
+              <option className="bg-green-900" value="Clothing">
+                Clothing
+              </option>
+              <option className="bg-green-900" value="Sports Equipment">
+                Sports Equipment
+              </option>
+              <option className="bg-green-900" value="Art Supplies">
+                Art Supplies
+              </option>
+              <option className="bg-green-900" value="Laboratory Equipment">
+                Laboratory Equipment
+              </option>
+              <option className="bg-green-900" value="Stationery">
+                Stationery
+              </option>
+              <option className="bg-green-900" value="Footwear">
+                Footwear
+              </option>
+              <option className="bg-green-900" value="Bag">
+                Bag
+              </option>
+              <option className="bg-green-900" value="Other">
+                Other
+              </option>
+            </DropDown>
                <DropDown
                       name="condition"
                       label="Condition"

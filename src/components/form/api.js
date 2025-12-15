@@ -187,3 +187,17 @@ export function postAddHelpedStudent(productId, data) {
       throw error;
     });
 }
+
+// Get products by category (Simple - no sorting)
+export function getProductsByCategory(category) {
+  return axios
+    .get(`http://localhost:3000/category?category=${category}`)
+    .then((response) => {
+      console.log('API response - products by category', response.data);
+      return response.data.products || response.data;
+    })
+    .catch((error) => {
+      console.error('API error - products by category', error);
+      throw error;
+    });
+}
