@@ -137,6 +137,7 @@ export function getSchoolLeaderBoard() {
       `http://localhost:3000/school/schoolLeaderBoard`
     )
     .then((res) => {
+      console.log('leaderboard data', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -188,7 +189,7 @@ export function postAddHelpedStudent(productId, data) {
     });
 }
 
-// Get products by category (Simple - no sorting)
+
 export function getProductsByCategory(category) {
   return axios
     .get(`http://localhost:3000/category?category=${category}`)

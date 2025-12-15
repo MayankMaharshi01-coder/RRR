@@ -14,8 +14,8 @@ export default function SchoolDetail() {
             getSchoolLeaderBoard(),
           ]);
 
-          const productsMap = new Map(leaderboardData.map(school => [school._id, school.totalProducts]));
-
+          const productsMap = new Map(leaderboardData.map(school => [school._id, school.totalProducts, school.helpedStudents]));
+ console.log("school data in detail component", allSchools, leaderboardData, productsMap);
           const mergedAndSortedData = allSchools
             .map(school => ({
               ...school,
@@ -31,6 +31,7 @@ export default function SchoolDetail() {
 
       fetchData();
     }, []);
+   console.log("final school data", schoolData);
 
     return (
         <>
@@ -50,6 +51,7 @@ export default function SchoolDetail() {
             <h1>{school.subDistrict}</h1>
             <span className="hidden md:block">{school.address}</span>
             <h1>{school.totalProducts}</h1>
+            <h2>{school.helpedStudents}</h2>
           </a>
          </div>
         })}
